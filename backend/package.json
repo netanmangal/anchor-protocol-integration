@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/netanmangal/anchor-protocol-integration/issues"
   },
-  "homepage": "https://github.com/netanmangal/anchor-protocol-integration#readme"
+  "homepage": "https://github.com/netanmangal/anchor-protocol-integration#readme",
+  "dependencies": {
+    "@anchor-protocol/anchor-earn": "^2.0.0"
+  }
 }
