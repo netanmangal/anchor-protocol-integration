@@ -2,6 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 
+const { anchorEarn } = require("./src/initiate-anchor.js");
+
 const app = express();
 
 app.use(express.json());        //for parsing application/json
@@ -16,5 +18,6 @@ app.get("/", (req, res, next) => {
 });
 
 app.listen(3001, async () => {
+    console.log(anchorEarn);
     console.log("Listening on port 3001");
 });
