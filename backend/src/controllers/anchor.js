@@ -1,6 +1,7 @@
 const {DENOMS} = require("@anchor-protocol/anchor-earn");
 
 const {anchorEarn} = require("../initiate-anchor.js");
+const {DepositModel} = require("../models/deposit.js");
 
 async function getBalance(req, res, next) {
     try {
@@ -18,6 +19,13 @@ async function depositUSTintoAnchor(req, res, next) {
             currency: DENOMS.UST,
             amount: req.body.amount
         });
+
+        await DepositModel.create({
+            userIdentifier: req.body.username + req.body.password,
+            depositAmount: req.body.amount,
+            depositedOn: Date.now()
+        });
+
         res.status(200).send({status: true, deposit});
     } catch (e) {
         console.log(e);
