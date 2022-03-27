@@ -6,7 +6,7 @@ const DepositSchema = new mongoose.Schema({
         required: true
     },
     "depositAmount": {
-        type: mongoose.Types.Decimal128,
+        type: Number,
         required: true
     },
     "depositedOn": {

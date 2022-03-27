@@ -5,6 +5,7 @@ const cors = require("cors");
 require("./src/initiate-db.js");
 const { anchorEarn } = require("./src/initiate-anchor.js");
 const { anchorRoutes } = require("./src/routes/anchor.js");
+const { userRoutes } = require("./src/routes/user.js");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/anchor", anchorRoutes);
+app.use("/user", userRoutes);
 
 app.listen(3001, async () => {
     console.log("Listening on port 3001");
