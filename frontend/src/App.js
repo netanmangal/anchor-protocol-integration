@@ -10,7 +10,8 @@ function App() {
   let [state, setState] = useState({
     apiURL: "http://localhost:3001",
     username: "",
-    password: ""
+    password: "",
+    amount: 0
   });
 
   return (
