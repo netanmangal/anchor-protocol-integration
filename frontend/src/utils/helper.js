@@ -13,7 +13,12 @@ export const handleFetchDepositTransactions = async (event, toast, state) => {
         });
         console.log(response);
 
-        toast.success("Request completed");
+        if (response.status == 200) {
+            toast.success("Request completed");
+        } else {
+            throw new Error({message: response});
+        }
+
     } catch (e) {
         console.log(e.message);
         toast.error("Error occured");
@@ -34,7 +39,13 @@ export const handlePerformDepositIntoAnchor = async (event, toast, state) => {
         });
         console.log(response);
 
-        toast.success("Txn completed");
+        if (response.status == 200) {
+            toast.success("Txn completed");
+        } else {
+            throw new Error({message: response});
+        }
+
+        
     } catch (e) {
         console.log(e.message);
         toast.error("Error occured");
