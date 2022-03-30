@@ -14,7 +14,7 @@ async function getDepositDetails(req, res, next) {
 async function createOrderID(req, res, next) {
     try {
         const response = await rzpInstance.orders.create({
-            amount: req.body.amount,
+            amount: req.body.amount * 100,
             currency: "INR",
             receipt: (new Date() % 923847) + req.body.amount + (new Date() % 3002347),
             notes: {
