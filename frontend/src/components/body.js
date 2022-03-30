@@ -26,7 +26,7 @@ function Body ({state, setState, toast}) {
             <form onSubmit={(event) => handlePerformDepositIntoAnchor(event, toast, state, setState)}>
             <input placeholder="Username" type="text" onChange={(event) => {setState({...state, username: event.target.value})}} /> <br />
             <input placeholder="Password" type="text" onChange={(event) => {setState({...state, password: event.target.value})}} /> <br />
-            <input placeholder="Deposit Amount (in UST)" type="text" onChange={(event) => {setState({...state, amount: event.target.value})}} /> <br />
+            <input placeholder="Deposit Amount (in Rs)" type="text" onChange={(event) => {setState({...state, amount: event.target.value})}} /> <br />
             <button type='submit'>Proceed to Pay</button>
             </form>
         </div>

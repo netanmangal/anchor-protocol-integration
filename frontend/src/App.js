@@ -15,6 +15,13 @@ function App() {
     listDepositTrans: []
   });
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+}, []);
+
   return (
     <div className="App">
       <div className="App-body">
