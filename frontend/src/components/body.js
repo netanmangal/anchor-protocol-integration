@@ -23,11 +23,11 @@ function Body ({state, setState, toast}) {
             <br />
 
             <h2>Anchor Protocol - Perform Deposit</h2>
-            <form onSubmit={(event) => handlePerformDepositIntoAnchor(event, toast, state)}>
+            <form onSubmit={(event) => handlePerformDepositIntoAnchor(event, toast, state, setState)}>
             <input placeholder="Username" type="text" onChange={(event) => {setState({...state, username: event.target.value})}} /> <br />
             <input placeholder="Password" type="text" onChange={(event) => {setState({...state, password: event.target.value})}} /> <br />
             <input placeholder="Deposit Amount (in UST)" type="text" onChange={(event) => {setState({...state, amount: event.target.value})}} /> <br />
-            <button type='submit'>Fetch my transactions</button>
+            <button type='submit'>Proceed to Pay</button>
             </form>
         </div>
     );

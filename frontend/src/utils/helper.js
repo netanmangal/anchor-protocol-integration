@@ -29,7 +29,7 @@ export const handleFetchDepositTransactions = async (event, toast, state, setSta
     }
 }
 
-export const handlePerformDepositIntoAnchor = async (event, toast, state) => {
+export const handlePerformDepositIntoAnchor = async (event, toast, state, setState) => {
     event.preventDefault();
     toast("Performing transactions...", {
         autoClose: 2000
