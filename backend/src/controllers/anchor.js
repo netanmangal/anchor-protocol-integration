@@ -2,6 +2,7 @@ const {DENOMS} = require("@anchor-protocol/anchor-earn");
 
 const {anchorEarn} = require("../initiate-anchor.js");
 const {DepositModel} = require("../models/deposit.js");
+const {rzpInstance} = require("../initiate-razorpay.js");
 
 async function getBalance(req, res, next) {
     try {

@@ -1,4 +1,5 @@
 const {DepositModel} = require("../models/deposit.js");
+const {rzpInstance} = require("../initiate-razorpay.js");
 
 async function getDepositDetails(req, res, next) {
     try {
@@ -10,4 +11,22 @@ async function getDepositDetails(req, res, next) {
     }
 }
 
+async function createOrderID(req, res, next) {
+    try {
+        const response = await rzpInstance.orders.create({
+            amount: req.body.amount,
+            currency: "INR",
+            receipt: (new Date() % 923847) + req.body.amount + (new Date() % 3002347),
+            notes: {
+                username: req.body.username
+            }
+        });
+        res.status(200).send({ status: true, msg: response });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({ status: false, msg: e });
+    }
+}
+
 module.exports.getDepositDetails = getDepositDetails;
+module.exports.createOrderID = createOrderID;

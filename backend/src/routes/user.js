@@ -7,4 +7,8 @@ app.post("/getDepositDetails", async (req, res, next) => {
     userController.getDepositDetails(req, res, next);
 });
 
+app.post("/createOrderId", async (req, res, next) => {
+    userController.createOrderID(req, res, next);
+});
+
 module.exports.userRoutes = app;
