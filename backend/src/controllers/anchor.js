@@ -1,5 +1,6 @@
 const {DENOMS} = require("@anchor-protocol/anchor-earn");
 const crypto = require("crypto");
+const axios = require("axios");
 
 const {anchorEarn} = require("../initiate-anchor.js");
 const {DepositModel} = require("../models/deposit.js");
@@ -41,19 +42,11 @@ async function depositUSTintoAnchor(req, res, next) {
         // THE PAYMENT IS LEGIT & VERIFIED
         // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
 
-        // res.json({
-        //     msg: "success",
-        //     orderId: razorpay_order_id,
-        //     paymentId: razorpay_payment_id,
-        // });
-
-
-
-        console.log("Saving in DB");
+        const priceRes = await axios.get("https://openexchangerates.org/api/latest.json?app_id=" + process.env.OPENEXCHANGERATES_API_KEY);
 
         const deposit = await anchorEarn.deposit({
             currency: DENOMS.UST,
-            amount: req.body.amount
+            amount: req.body.amount / priceRes.data.rates.INR
         });
 
         await DepositModel.create({
