@@ -1,0 +1,17 @@
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    max-width: 1000px;
+}
+
+.card {
+    display: inline-block;
+    width: 400px;
+    border: white;
+    border-width: 13px;
+    box-shadow: blue;
+    margin: 12px;
+    padding: 3px;
+}

@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-export const handleFetchDepositTransactions = async (event, toast, state) => {
+export const handleFetchDepositTransactions = async (event, toast, state, setState) => {
     event.preventDefault();
     toast("Fetching transactions...", {
         autoClose: 2000
@@ -14,6 +14,10 @@ export const handleFetchDepositTransactions = async (event, toast, state) => {
         console.log(response);
 
         if (response.status == 200) {
+            setState({
+                ...state, 
+                listDepositTrans: response.data.response
+            })
             toast.success("Request completed");
         } else {
             throw new Error({message: response});

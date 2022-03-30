@@ -11,7 +11,8 @@ function App() {
     apiURL: "http://localhost:3001",
     username: "",
     password: "",
-    amount: 0
+    amount: 0,
+    listDepositTrans: []
   });
 
   return (
