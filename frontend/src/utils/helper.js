@@ -15,12 +15,12 @@ export const handleFetchDepositTransactions = async (event, toast, state, setSta
 
         if (response.status == 200) {
             setState({
-                ...state, 
+                ...state,
                 listDepositTrans: response.data.response
             })
             toast.success("Request completed");
         } else {
-            throw new Error({message: response});
+            throw new Error({ message: response });
         }
 
     } catch (e) {
@@ -51,13 +51,17 @@ export const handlePerformDepositIntoAnchor = async (event, toast, state, setSta
                 description: "Test trans",
                 order_id: response.data.msg.id,
                 image: 'https://netizaq-token.netanmangal.me/static/media/logo.e5253454.png',
-                handler: async function(response) {
-                    console.log(response);
-                    const res = await axios.post(state.apiURL + "/anchor/payment/success", {
-                        ...response,
-                        order_id: response.data.msg.id
+                handler: async function (r) {
+                    console.log(r);
+                    const res = await axios.post(state.apiURL + "/anchor/depositUSTintoAnchor", {
+                        ...r,
+                        order_id: response.data.msg.id,
+                        username: state.username,
+                        password: state.password,
+                        amount: state.amount
                     });
                     console.log(res);
+                    toast.success("Txn completed");
                 },
                 prefill: {
                     name: state.username,
@@ -65,7 +69,7 @@ export const handlePerformDepositIntoAnchor = async (event, toast, state, setSta
                     email: 'test@netanmangal.me'
                 },
                 notes: {
-                    username: state.username, 
+                    username: state.username,
                 },
                 theme: {
                     color: 'blue',
@@ -76,10 +80,9 @@ export const handlePerformDepositIntoAnchor = async (event, toast, state, setSta
             var rzp1 = new window.Razorpay(options);
             rzp1.open();
 
-            toast.success("Txn completed");
         } else {
-            throw new Error({message: response});
-        } 
+            throw new Error({ message: response });
+        }
     } catch (e) {
         console.log(e.message);
         toast.error("Error occured");
