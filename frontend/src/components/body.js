@@ -5,6 +5,12 @@ import {ListDeposit} from "../components/listDeposit.js";
 function Body ({state, setState, toast}) {
     return (
         <div style={{paddingBottom: "50px"}}>
+            <p>
+                Balance in Admin's Anchor Account: {state.ustAvailable}
+            </p>
+
+            <br />
+
             <h2>User - List Deposit Transactions</h2>
             <form onSubmit={(event) => handleFetchDepositTransactions(event, toast, state, setState)}>
             <input placeholder="Username" type="text" onChange={(event) => {setState({...state, username: event.target.value})}} /> <br />
@@ -29,6 +35,8 @@ function Body ({state, setState, toast}) {
             <input placeholder="Deposit Amount (in Rs)" type="text" onChange={(event) => {setState({...state, amount: event.target.value})}} /> <br />
             <button type='submit'>Proceed to Pay</button>
             </form>
+
+            
         </div>
     );
 }

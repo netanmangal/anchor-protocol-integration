@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 import logo from './logo.png';
 import './App.css';
@@ -12,7 +13,8 @@ function App() {
     username: "",
     password: "",
     amount: 0,
-    listDepositTrans: []
+    listDepositTrans: [],
+    ustAvailable: 0
   });
 
   useEffect(() => {
@@ -20,6 +22,18 @@ function App() {
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.async = true;
     document.body.appendChild(script);
+
+    const init = async () => {
+      const response = await axios.get(state.apiURL + "/anchor/getBalance");
+      console.log("-->");
+      console.log(response);
+      setState({
+        ...state,
+        ustAvailable: (JSON.parse(response.data.balanceRes)).balances[0].account_balance
+      })
+    }
+
+    init();
 }, []);
 
   return (
